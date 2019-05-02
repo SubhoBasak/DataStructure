@@ -205,7 +205,7 @@ class linked_list:
 
     # Remove a existing item from the given index and linked it's previous
     # node with it's next node
-    def remove(self, index):
+    def remove_by_index(self, index):
         if self.head != None:
             if index > -1 and index < self.length():
                 cur_indx = 0
