@@ -183,3 +183,52 @@ class linked_list:
             cur_node.nxt_node = new_list.head
         else:
             print('Invalid operation !')
+
+#============================== MULTIPLICATION ================================
+
+    def __mul__(self, other):
+        if self.head != None and type(other) == int:
+            cpy_list = linked_list()
+            self.copy(cpy_list)
+            cur_node = self.head
+            tmp_head = self.head
+            for i in range(other-1):
+                assign = linked_list()
+                cpy_list.copy(assign)
+                cur_node = assign.head
+                while cur_node.nxt_node != assign.head:
+                    cur_node = cur_node.nxt_node
+                cur_node.nxt_node = self.head
+                cur_node = self.head
+                while cur_node.nxt_node != self.head:
+                    cur_node = cur_node.nxt_node
+                cur_node.nxt_node = assign.head
+        else:
+            print('Invalid operation !')
+
+#================================== REMOVE =====================================
+
+    def remove_by_index(self, index):
+        if index > -1 and index < self.length():
+            if self.head != None:
+                cur_node = self.head.nxt_node
+                prv_node = self.head
+                cur_indx = 1
+                if index == 0:
+                    while cur_node.nxt_node != self.head:
+                        cur_node = cur_node.nxt_node
+                    cur_node.nxt_node = self.head.nxt_node
+                    self.head = self.head.nxt_node
+                else:
+                    while cur_indx <= index :
+                        if cur_indx == index:
+                            prv_node.nxt_node = cur_node.nxt_node
+                            break
+                        else:
+                            prv_node = cur_node
+                            cur_node = cur_node.nxt_node
+                            cur_indx += 1
+            else:
+                print('List is empty !')
+        else:
+            print('Invalid index !')
