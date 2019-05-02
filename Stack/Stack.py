@@ -47,3 +47,8 @@ class Stack:
             return tmp
         else:
             print('Invalid operation !')
+
+    def getIndex(self, val):
+        for i, j in enumerate(self.__elements):
+            if j == val:
+                return i
