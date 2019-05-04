@@ -103,3 +103,133 @@ class linked_list:
                 print('Invalid index !')
         else:
             print('List is empty !')
+
+#==================================== COPY ===================================
+
+    def copy(self, other):
+        if self.head != None and type(other) == linked_list and other.head == None:
+            other.head = node(self.head.value)
+            other.head.nxt_node = other.head
+            other.head.prv_node = other.head
+            cpy_node = self.head.nxt_node
+            pst_node = other.head
+            while cpy_node != self.head:
+                pst_node.nxt_node = node(cpy_node.value)
+                pst_node.nxt_node.nxt_node = other.head
+                pst_node.nxt_node.prv_node = pst_node
+                other.head.prv_node = pst_node.nxt_node
+                cpy_node = cpy_node.nxt_node
+                pst_node = pst_node.nxt_node
+        else:
+            print('Invalild operation !')
+
+#=================================== INSERT ===================================
+
+    def insert_after(self, index, value):
+        if self.head != None:
+            if index > -1 and index < self.length()-1:
+                cur_indx = 0
+                cur_node = self.head
+                while cur_indx < index:
+                    cur_indx += 1
+                    cur_node = cur_node.nxt_node
+                tmp = cur_node.nxt_node
+                cur_node.nxt_node = node(value)
+                cur_node.nxt_node.prv_node = cur_node
+                cur_node.nxt_node.nxt_node = tmp
+                cur_node.nxt_node.nxt_node.prv_node = cur_node.nxt_node
+            else:
+                print('Invalid index !')
+        else:
+            print('Linked list is empty !')
+
+    def insert_before(self, index, value):
+        if self.head != None:
+            if index > 0 and index < self.length():
+                cur_indx = 0
+                cur_node = self.head
+                while cur_indx+1 < index:
+                    cur_indx += 1
+                    cur_node = cur_node.nxt_node
+                tmp = cur_node.nxt_node
+                cur_node.nxt_node = node(value)
+                cur_node.nxt_node.prv_node = cur_node
+                cur_node.nxt_node.nxt_node = tmp
+                cur_node.nxt_node.nxt_node.prv_node = cur_node.nxt_node
+            else:
+                print('Invalid index !')
+        else:
+            
+            print('Linked List is empty !')
+
+#================================== REMOVE ===================================
+
+    def remove(self, index):
+        if self.head != None:
+            if index > -1 and index < self.length():
+                cur_indx = 0
+                cur_node = self.head
+                if index == 0:
+                    self.head.prv_node.nxt_node = self.head.nxt_node
+                    self.head.nxt_node.prv_node = self.head.prv_node
+                    self.head = self.head.nxt_node
+                else:
+                    while cur_indx+1 < index:
+                        cur_indx += 1
+                        cur_node = cur_node.nxt_node
+                    cur_node.nxt_node = cur_node.nxt_node.nxt_node
+                    cur_node.nxt_node.prv_node = cur_node
+            else:
+                print('Invalid index !')
+        else:
+            print('Invalid operation !')
+
+#================================ DTYPE CHANGE =================================
+
+    def __int__(self):
+        if self.head != None:
+            try:
+                self.head.value = int(self.head.value)
+                cur_node = self.head.nxt_node
+                while cur_node != self.head:
+                    cur_node.value = int(cur_node.value)
+                    cur_node = cur_node.nxt_node
+                return 1
+            except ValueError:
+                print('Invalid operation !')
+                return 0
+        else:
+            print('Linked List is empty !')
+            return 0
+
+    def __float__(self):
+        if self.head != None:
+            try:
+                self.head.value = float(self.head.value)
+                cur_node = self.head.nxt_node
+                while cur_node != self.head:
+                    cur_node.value = float(cur_node.value)
+                    cur_node = cur_node.nxt_node
+                return 1.0
+            except ValueError:
+                print('Invalid operation !')
+                return 0.0
+        else:
+            print('Linked List is empty !')
+            return 0.0
+
+    def __str__(self):
+        if self.head != None:
+            try:
+                self.head.value = str(self.head.value)
+                cur_node = self.head.nxt_node
+                while cur_node != self.head:
+                    cur_node.value = str(cur_node.value)
+                    cur_node = cur_node.nxt_node
+                return '1'
+            except ValueError:
+                print('Invalid operation !')
+                return '0'
+        else:
+            print('Linked List is empty !')
+            return '0'
