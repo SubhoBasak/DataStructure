@@ -62,3 +62,50 @@ class tree:
 
     def __len__(self):
         return self.size()
+
+    def index(self, value):
+        if value in self.__items:
+            return self.__items.index(value)
+        print('Value is not in tree !')
+        return None
+
+    def find_range(self, node_val):
+        if node_val in self.__items:
+            indx = self.__items.index(node_val)
+            if indx == 0:
+                print('Node {} is the root of this tree.'.format(indx))
+                print('And root has infinitive range')
+            else:
+                less_than, greater_than = self.__find_range(indx)
+                print('The range of the node {} will be,'.format(node_val))
+                print('\tGreater than : {}  and\n\tLess than : {}'.format(greater_than, less_than))
+        else:
+            print('Value is not in tree !')
+
+    def __find_range(self, cur_indx):
+        less_than = None
+        greater_than = None
+        if cur_indx%2 == 0:
+            cur_indx = int((cur_indx-2)/2)
+            greater_than = self.__items[cur_indx]
+            while cur_indx%2 != 1:
+                if cur_indx <= 0:
+                    return (less_than, greater_than)
+                cur_indx = int((cur_indx-2)/2)
+            if cur_indx <= 0:
+                less_than = None
+            else:
+                less_than = self.__items[int((cur_indx-1)/2)]
+            return (less_than, greater_than)
+        else:
+            cur_indx = int((cur_indx-1)/2)
+            less_than = self.__items[cur_indx]
+            while cur_indx%2 != 0:
+                if cur_indx <= 0:
+                    return (less_than, greater_than)
+                cur_indx = int((cur_indx-1)/2)
+            if cur_indx <= 0:
+                greater_than = None
+            else:
+                greater_than = self.__items[int((cur_indx-2)/2)]
+            return (less_than, greater_than)
