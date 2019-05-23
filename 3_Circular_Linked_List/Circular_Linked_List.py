@@ -30,6 +30,8 @@ class linked_list:
 
 #================================= VIEW =====================================
 
+# Print all the elements contain in the linked list
+
     def view(self, loops = 1):
         if type(loops) == int:
             if loops > 0:
@@ -48,6 +50,8 @@ class linked_list:
 
 #================================= LENGTH ====================================
 
+# Return the length (integer value) of the linked list
+
     def length(self):
         cur_node = self.head
         cur_size = 0
@@ -60,6 +64,8 @@ class linked_list:
         return self.length()
 
 #================================= REPLACE ====================================
+
+# Replace an existing value of a node in the given index with the given value
 
     def replace(self, index, value):
         if self.head != None:
@@ -82,6 +88,8 @@ class linked_list:
 
 #=================================== FIND ====================================
 
+# Find and return a node with the value matched with the given value
+
     def find(self, value):
         if self.head != None:
             cur_node = self.head
@@ -98,6 +106,8 @@ class linked_list:
             print('List is empty !')
 
 #=================================== COPY ====================================
+
+# Create a deep copy of this current linked list to an given empty linked list
 
     def copy(self, new_list):
         if self.head != None:
@@ -116,6 +126,9 @@ class linked_list:
             print('List is empty !')
 
 #================================= INSERT ====================================
+
+# Insert a new node with the given value in the linked list after the given
+# index
 
     def insert_after(self, index, value):
         if self.head != None:
@@ -140,6 +153,9 @@ class linked_list:
                 print('Invalid index !')
         else:
             print('List is empty !')
+
+# Insert a new node with the given value in the linked list before the given
+# index
 
     def insert_before(self, index, value):
         if self.head != None:
@@ -169,6 +185,9 @@ class linked_list:
 
 #================================= IS EMPTY ==================================
 
+# Chock the linked list is empty or not and return True if it's empty, otherwise
+# return False
+
     def isEmpty(self):
         if self.length() == 0:
             return True
@@ -176,6 +195,8 @@ class linked_list:
             return False
 
 #================================ ADDITION ====================================
+
+# Add an other linked list after the last index of the current linked list
 
     def __add__(self, other):
         if self.head != None and type(other) == linked_list:
@@ -193,6 +214,9 @@ class linked_list:
             print('Invalid operation !')
 
 #============================== MULTIPLICATION ================================
+
+# Increse the number of nodes of the linked list multiplying it the given
+# integer value, and repeate the nodes value to the new nodes
 
     def __mul__(self, other):
         if self.head != None and type(other) == int:
@@ -215,6 +239,9 @@ class linked_list:
             print('Invalid operation !')
 
 #================================== REMOVE =====================================
+
+# Remove the node at the given index and linked it's previous node to it's next
+# node
 
     def remove_by_index(self, index):
         if index > -1 and index < self.length():
