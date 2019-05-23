@@ -1,14 +1,21 @@
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# Node class
 class node:
     def __init__(self, value = None):
         self.value = value
         self.nxt_node = None
         self.prv_node = None
 
+# Main linked list class
 class linked_list:
     def __init__(self):
         self.head = None
 
 #==================================== ADD =====================================
+
+# add new data elements to the linked list
 
     def add(self, value):
         if self.head == None:
@@ -49,6 +56,8 @@ class linked_list:
 
 #==================================== FIND ====================================
 
+# Find a node with the given value as search key and retuern the node address
+
     def find(self, value):
         if self.head != None:
             cur_node = self.head
@@ -64,6 +73,8 @@ class linked_list:
             print('List is empty !')
 
 #================================== LENGTH =====================================
+
+# Return the length (integer value) of the linked list
 
     def length(self):
         if self.head != None:
@@ -82,6 +93,8 @@ class linked_list:
 
 #==================================== REPLACE ==================================
 
+# Replace an existing value at the given index with the new given value
+
     def replace(self, index, value):
         cur_node = self.head
         cur_indx = 0
@@ -97,6 +110,10 @@ class linked_list:
             print('Enter a valid index !')
 
 #=================================== INSERT ==================================
+
+# create a new node inside the linked list after the given index and assign the
+# given value. In simple word insert a new node with the given value after the
+# given index
 
     def insert_after(self, index, value):
         if self.head != None:
@@ -118,6 +135,9 @@ class linked_list:
                 print('Enter a valid index !')
         else:
             print('List is empty !')
+
+# Opposite of the previous function. Insert a new node with the given value
+# before the given index inside the linked list
 
     def insert_before(self, index, value):
         if self.head != None:
@@ -148,6 +168,8 @@ class linked_list:
 
 #==================================== COPY ===================================
 
+# Create a deep copy of the linked list in an other given empty list
+
     def copy(self, new_list):
         if type(new_list) == linked_list and new_list.head == None:
             cur_node = self.head
@@ -163,6 +185,8 @@ class linked_list:
 
 #================================== ADDITION =================================
 
+# add an other linked list after this linked list
+
     def __add__(self, other):
         if self.head != None and type(other) == linked_list:
             cur_node = self.head
@@ -176,6 +200,9 @@ class linked_list:
             print('Invalid operation !')
 
 #================================ MULTIPLICATION =============================
+
+# increse the linked list multiplying it with the given integer and the current
+# node values will be repated the (given integer - 1) times
 
     def __mul__(self, other):
         if type(other) == int and self.head != None:
@@ -195,6 +222,9 @@ class linked_list:
 
 #================================== IS EMPTY ==================================
 
+# check if the linked list is empty or not. Return True if the linked list is
+# empty, otherwise return False
+
     def isEmpty(self):
         if self.length() == 0:
             return True
@@ -203,8 +233,9 @@ class linked_list:
 
 #=================================== REMOVE ===================================
 
-    # Remove a existing item from the given index and linked it's previous
-    # node with it's next node
+# Remove a existing item from the given index and linked it's previous
+# node with it's next node
+
     def remove_by_index(self, index):
         if self.head != None:
             if index > -1 and index < self.length():

@@ -1,13 +1,21 @@
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# Node class
 class node:
     def __init__(self, value = None):
         self.value = value
         self.nxt_node = None
 
+# main linked list class
 class linked_list:
     def __init__(self):
         self.head = None
 
 #================================== ADD ======================================
+
+# add new data element to the circular linked list, after the current last
+# element
 
     def add(self, value):
         if self.head == None:
