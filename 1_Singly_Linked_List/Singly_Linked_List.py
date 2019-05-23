@@ -230,7 +230,7 @@ class linked_list:
         cur_node = self.head.nxt_node
         mx = self.head.value
         while cur_node != None:
-            if cur_node.value < mx:
+            if cur_node.value > mx:
                 mx = cur_node.value
             cur_node = cur_node.nxt_node
         return mx
