@@ -1,13 +1,13 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
+# Node class
 class node:
     def __init__(self, value = None):
         self.value = value
         self.nxt_node = None
 
-
+# Main linked list class
 class linked_list:
     def __init__(self):
         self.head = None
@@ -210,3 +210,27 @@ class linked_list:
                 print('Invalid index !')
         else:
             print('List is empty')
+
+#================================ MINIMUM VALUE ===============================
+
+# Return the minimum value contain in the linked list
+    def min(self):
+        cur_node = self.head.nxt_node
+        mn = self.head.value
+        while cur_node != None:
+            if cur_node.value < mn:
+                mn = cur_node.value
+            cur_node = cur_node.nxt_node
+        return mn
+
+#================================ MAXIMUM VALUE ===============================
+
+# Return the maximum value contain in the linked list
+    def min(self):
+        cur_node = self.head.nxt_node
+        mx = self.head.value
+        while cur_node != None:
+            if cur_node.value < mx:
+                mx = cur_node.value
+            cur_node = cur_node.nxt_node
+        return mx
