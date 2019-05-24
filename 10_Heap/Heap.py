@@ -1,13 +1,17 @@
+# Main heap class
 class heap:
     def __init__(self):
         self.__items = []
         self.__len = 0
 
+# Add new data element in the heap in a proper position and sort the nodes to
+# maintain heap's property
     def add(self, value):
         self.__items.append(value)
         self.__sort_bottom_up(self.__len)
         self.__len += 1
 
+# Helper method for the previous method to sort the nodes in bottom-up approach
     def __sort_bottom_up(self, cur_indx):
         if cur_indx%2 != 0:
             while cur_indx != 0:
@@ -30,6 +34,8 @@ class heap:
                 else:
                     break
 
+# Return the rooot node's value and removed it from the heap then sort the heap
+# to maintain it's property
     def peek(self):
         if len(self.__items) == 0:
             print('Tree is empty !')
@@ -41,6 +47,7 @@ class heap:
         self.__sort_top_down(0)
         return tmp
 
+# Helper method for the previous method for sort the heap in top-down approach
     def __sort_top_down(self, cur_indx):
         left = right = None
         if (2*cur_indx)+1 < len(self.__items):
@@ -62,14 +69,19 @@ class heap:
             self.__items[cur_indx] = tmp
             self.__sort_top_down(mx)
 
+# Print all the nodes value contain in the heap
     def view(self):
         print(self.__items)
 
+# Return the size/number of the nodes in the heap (integer value)
     def size(self):
         return len(self.__items)
 
+# Do same as the previous method do using the pre-defined len() function
     def __len__(self):
         return len(self.__items)
 
+# Return the index number of the node contain the given value if the value exist
+# in the heap
     def getIndex(self, value):
         return self.__items.index(value)

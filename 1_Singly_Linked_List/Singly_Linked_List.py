@@ -234,3 +234,32 @@ class linked_list:
                 mx = cur_node.value
             cur_node = cur_node.nxt_node
         return mx
+
+#==================================== DATA TYPES ==============================
+
+# Transfer the data type of the elements to integer types in the linked list
+# and return integer value 1 to maintain __int__ property
+    def __int__(self):
+        cur_node = self.head
+        while cur_node != None:
+            cur_node.value = int(cur_node.value)
+            cur_node = cur_node.nxt_node
+        return 1
+
+# Transfer the data type of the elements to floating point types in the linked
+# list and return float point value 1.0 to maintain __float__ property 
+    def __float__(self):
+        cur_node = self.head
+        while cur_node != None:
+            cur_node.value = float(cur_node.value)
+            cur_node = cur_node.nxt_node
+        return 1.0
+
+# Transfer the data type of the elements to string data type in the linked list
+# and return string value '1' to maintain __str__ property
+    def __str__(self):
+        cur_node = self.head
+        while cur_node != None:
+            cur_node.value = str(cur_node.value)
+            cur_node = cur_node.nxt_node
+        return '1'
