@@ -123,3 +123,11 @@ class tree:
             else:
                 greater_than = self.__items[int((cur_indx-2)/2)]
             return (less_than, greater_than)
+
+# Return the minimum value store in the tree
+    def min_val(self):
+        return min(self.__items)
+
+# Return the maximum value store in the tree
+    def max_val(self):
+        return max(self.__items)
