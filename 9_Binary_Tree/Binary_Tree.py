@@ -180,3 +180,21 @@ class binary_tree:
         left_size = self._size(cur_node.left_child)
         right_size = self._size(cur_node.right_child)
         return left_size+right_size+1
+
+#============================== MINIMUM VALUE ================================
+
+# Return the minimum value store in the tree
+    def min(self):
+        cur_node = self.root
+        while cur_node.left_child != None:  # from the property of the tree we
+            cur_node = cur_node.left_child  # can say that the left most leaf
+        return cur_node.value               # node contain the minimum value
+
+#============================== MAXIMUM VALUE =================================
+
+# Return the maximum value store in the tree
+    def max(self):
+        cur_node = self.root
+        while cur_node.right_child != None:  # from the property of the tree we
+            cur_node = cur_node.right_child  # can say that the right most node
+        return cur_node.value                # contain the maximum value
