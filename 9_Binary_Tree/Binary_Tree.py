@@ -291,15 +291,3 @@ class binary_tree:
             cur_node = cur_node.right_child
             side = 1
         return parent_node, side
-
-
-
-lst = [23, 12, 31, 4, 15, 29, 35, 2, 7, 25, 30, 33]
-tree = binary_tree()
-for i in lst:
-    tree.insert(i)
-
-tree.delete(23)
-tree.delete(25)
-tree.delete(29)
-tree.delete(30)
