@@ -34,7 +34,7 @@ class heap:
                 else:
                     break
 
-# Return the rooot node's value and removed it from the heap then sort the heap
+# Return the root node's value and removed it from the heap then sort the heap
 # to maintain it's property
     def peek(self):
         if len(self.__items) == 0:
