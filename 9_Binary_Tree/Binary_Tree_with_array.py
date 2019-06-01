@@ -1,5 +1,5 @@
 # Main tree class
-class tree:
+class binary_tree:
     def __init__(self, height):
         self.__items = [None for i in range(2**(height+1)-1)]
 
@@ -131,3 +131,54 @@ class tree:
 # Return the maximum value store in the tree
     def max_val(self):
         return max(self.__items)
+
+# Find the given value in the tree, if it exist in the tree then return the
+# index (self.__items list's index) of the node, otherwise return none
+    def find(self, value):
+        return self.__find(0, value)
+
+# Helper function for the previous function
+    def __find(self, cur_indx, value):
+        if self.__items[cur_indx] == value:
+            return cur_indx
+        elif value < self.__items[cur_indx]:
+            if 2*cur_indx+1 < len(self.__items):
+                return self.__find(2*cur_indx+1, value)
+            else:
+                print('Value is not available in the tree !')
+                return None
+        elif value > self.__items[cur_indx]:
+            if 2*cur_indx+2 < len(self.__items):
+                return self.__find(2*cur_indx+2, value)
+            else:
+                print('Value is not available in the tree !')
+                return None
+
+# Delete the node contain the given value, from the tree
+    def delete(self, value):
+        indx = self.find(value)
+        if indx == None:
+            return None
+        self.__delete(indx)
+
+    def __delete(self, cur_indx):
+        if (2*cur_indx+1 >= len(self.__items) or self.__items[2*cur_indx+1] == None) and (2*cur_indx+2 >= len(self.__items) or self.__items[2*cur_indx+2] == None):
+            self.__items[cur_indx] = None
+        elif 2*cur_indx+2 >= len(self.__items) or self.__items[2*cur_indx+2] == None:
+            indx = self.__max_node(2*cur_indx+1)
+            self.__items[cur_indx] = self.__items[indx]
+            self.__delete(indx)
+        else:
+            indx = self.__min_node(2*cur_indx+2)
+            self.__items[cur_indx] = self.__items[indx]
+            self.__delete(indx)
+
+    def __max_node(self, cur_indx):
+        while 2*cur_indx+2 < len(self.__items) and self.__items[2*cur_indx+2] != None:
+            cur_indx = 2*cur_indx+2
+        return cur_indx
+
+    def __min_node(self, cur_indx):
+        while 2*cur_indx+1 < len(self.__items) and self.__items[2*cur_indx+1] != None:
+            cur_indx = 2*cur_indx+1
+        return cur_indx
