@@ -198,3 +198,108 @@ class binary_tree:
         while cur_node.right_child != None:  # from the property of the tree we
             cur_node = cur_node.right_child  # can say that the right most node
         return cur_node.value                # contain the maximum value
+
+#================================ DELETE NODE ================================
+
+# delete a node contain the given value, from the tree and re-arrange the tree
+    def delete(self, value):
+        if self.root.value == value:
+            if self.root.left_child == None and self.root.right_child == None:
+                self.root = None
+            elif self.root.right_child == None:
+                p, s = self.__max_node(self.root, 0)
+                if s == 0:
+                    self.root.value = p.left_child.value
+                else:
+                    self.root.value = p.right_child.value
+                self.__delete_node(p, s)
+            else:
+                p, s = self.__min_node(self.root, 1)
+                if s == 0:
+                    self.root.value = p.left_child.value
+                else:
+                    self.root.value = p.right_child.value
+                self.__delete_node(p, s)
+        else:
+            if value < self.root.value and self.root.left_child != None:
+                self.__search(self.root.left_child, self.root, 0, value)
+            elif value > self.root.value and self.root.right_child != None:
+                self.__search(self.root.right_child, self.root, 1, value)
+
+# helper function for the previous function. find the node contain the given
+# value and returns it's parent node
+    def __search(self, cur_node, parent_node, side, value):
+        if cur_node.value == value:
+            self.__delete_node(parent_node, side)
+        elif value < cur_node.value and cur_node.left_child != None:
+            self.__search(cur_node.left_child, cur_node, 0, value)
+        elif value > cur_node.value and cur_node.right_child != None:
+            self.__search(cur_node.right_child, cur_node, 1, value)
+        else:
+            print('Value is not in the tree !')
+            return None
+
+# delete the given node
+    def __delete_node(self, parent_node, side):
+        if side == 0:
+            if parent_node.left_child.left_child == None and parent_node.left_child.right_child == None:
+                parent_node.left_child = None
+            elif parent_node.left_child.right_child == None:
+                p, s = self.__max_node(parent_node.left_child, 0)
+                if s == 0:
+                    parent_node.left_child.value = p.left_child.value
+                else:
+                    parent_node.left_child.value = p.right_child.value
+                self.__delete_node(p, s)
+            else:
+                p, s = self.__min_node(parent_node.left_child, 1)
+                if s == 0:
+                    parent_node.left_child.value = p.left_child.value
+                else:
+                    parent_node.left_child.value = p.right_child.value
+                self.__delete_node(p, s)
+        else:
+            if parent_node.right_child.left_child == None and parent_node.right_child.right_child == None:
+                parent_node.right_child = None
+            elif parent_node.right_child.right_child == None:
+                p, s = self.__max_node(parent_node.right_child, 0)
+                if s == 0:
+                    parent_node.right_child.value = p.left_child.value
+                else:
+                    parent_node.right_child.value = p.right_child.value
+                self.__delete_node(p, s)
+            else:
+                p, s = self.__min_node(parent_node.right_child, 1)
+                if s == 0:
+                    parent_node.right_child.value = p.left_child.value
+                else:
+                    parent_node.right_child.value = p.right_child.value
+                self.__delete_node(p, s)
+
+    def __min_node(self, parent_node, side):
+        cur_node = parent_node.right_child
+        while cur_node.left_child != None:
+            parent_node = cur_node
+            cur_node = cur_node.left_child
+            side = 0
+        return parent_node, side
+
+    def __max_node(self, parent_node, side):
+        cur_node = parent_node.left_child
+        while cur_node.right_child != None:
+            parent_node = cur_node
+            cur_node = cur_node.right_child
+            side = 1
+        return parent_node, side
+
+
+
+lst = [23, 12, 31, 4, 15, 29, 35, 2, 7, 25, 30, 33]
+tree = binary_tree()
+for i in lst:
+    tree.insert(i)
+
+tree.delete(23)
+tree.delete(25)
+tree.delete(29)
+tree.delete(30)
