@@ -154,13 +154,19 @@ class binary_tree:
                 print('Value is not available in the tree !')
                 return None
 
-# Delete the node contain the given value, from the tree
+# Delete the node contain the given value, from the tree. But actually it does
+# not delete the node: first, it call the self.find function and find the
+# index of the node which contain the given value, the pass the index to it's
+# helper function to delete the node
     def delete(self, value):
         indx = self.find(value)
         if indx == None:
             return None
         self.__delete(indx)
 
+# Helper function for the previous function to delete the ndoe,it take the index
+# of the node which we want to delete and the delete the node and rearrange the
+# tree to maintain it's property
     def __delete(self, cur_indx):
         if (2*cur_indx+1 >= len(self.__items) or self.__items[2*cur_indx+1] == None) and (2*cur_indx+2 >= len(self.__items) or self.__items[2*cur_indx+2] == None):
             self.__items[cur_indx] = None
@@ -173,11 +179,15 @@ class binary_tree:
             self.__items[cur_indx] = self.__items[indx]
             self.__delete(indx)
 
+# Return the index of the node which contain the maximum value in the sub-tree
+# of the given index's node
     def __max_node(self, cur_indx):
         while 2*cur_indx+2 < len(self.__items) and self.__items[2*cur_indx+2] != None:
             cur_indx = 2*cur_indx+2
         return cur_indx
 
+# Return the index of the node which contain the minimum value in the sub-tree
+# of the given index's node
     def __min_node(self, cur_indx):
         while 2*cur_indx+1 < len(self.__items) and self.__items[2*cur_indx+1] != None:
             cur_indx = 2*cur_indx+1

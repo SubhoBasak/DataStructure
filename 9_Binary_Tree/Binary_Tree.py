@@ -239,7 +239,7 @@ class binary_tree:
             print('Value is not in the tree !')
             return None
 
-# delete the given node
+# delete the child node of the given node of the given side (0 = left_child, 1 = right_child)
     def __delete_node(self, parent_node, side):
         if side == 0:
             if parent_node.left_child.left_child == None and parent_node.left_child.right_child == None:
@@ -276,6 +276,8 @@ class binary_tree:
                     parent_node.right_child.value = p.right_child.value
                 self.__delete_node(p, s)
 
+# Return the parent node of the minimum node situated at the subtree of the given
+# parent node at given side
     def __min_node(self, parent_node, side):
         cur_node = parent_node.right_child
         while cur_node.left_child != None:
@@ -284,6 +286,8 @@ class binary_tree:
             side = 0
         return parent_node, side
 
+# Return the parent node of the maximum node situated at the subtree of the given
+# parent node at given side
     def __max_node(self, parent_node, side):
         cur_node = parent_node.left_child
         while cur_node.right_child != None:
