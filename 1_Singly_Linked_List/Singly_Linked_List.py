@@ -321,3 +321,54 @@ class linked_list:
                     return None
             tmp_lnk_lst.add(cur_node.value)
         return tmp_lnk_lst
+
+#================================ SET ITEM ====================================
+
+# Set the given value to the index or in the slice defines by the user at the
+# runtime. Ex - lst_obj[2] = 'New value' (set the 'New value' to the index 2),
+# lst_obj[::] = 0 (replave all values with 0). And the slicing same as the
+# previous function.
+
+    def __setitem__(self, indx, value):
+        if self.size() == 0:
+            print('List is empty !')
+            return None
+
+        cur_node = self.head
+        cur_indx = 0
+        if isinstance(indx, slice):
+            if indx.start == None:
+                start = 0
+            else:
+                start = indx.start
+
+            if indx.stop == None:
+                stop = self.size()
+            else:
+                stop = indx.stop
+
+            if indx.step == None:
+                step = 1
+            else:
+                step = indx.step
+
+            while cur_indx != start:
+                cur_node = cur_node.nxt_node
+                cur_indx += 1
+
+            while cur_indx < stop and cur_indx < self.size():
+                cur_node.value = value
+                cur_indx += step
+                for i in range(step):
+                    if cur_node.nxt_node != None:
+                        cur_node = cur_node.nxt_node
+                
+        else:
+            while cur_indx != indx:
+                if cur_node.nxt_node != None:
+                    cur_node = cur_node.nxt_node
+                    cur_indx += 1
+                else:
+                    print('Index out of range !')
+                    return None
+            cur_node.value = value
