@@ -235,7 +235,7 @@ class linked_list:
             cur_node = cur_node.nxt_node
         return mx
 
-#==================================== DATA TYPES ==============================
+#================================ DATA TYPES ==================================
 
 # Transfer the data type of the elements to integer types in the linked list
 # and return integer value 1 to maintain __int__ property
@@ -263,3 +263,61 @@ class linked_list:
             cur_node.value = str(cur_node.value)
             cur_node = cur_node.nxt_node
         return '1'
+
+#================================= GET ITEMS ==================================
+
+# Return a sub-linked list with the value at the index defined by the user after
+# the object of that main linked list in [] brackets. Ex - lst_obj[1]
+# Or, return a sub-linked list with the values after slicing the main list (the
+# main list remain same as before the slicing). Ex - lst_obj[1:8:2] or
+# lst_obj[::2] or lst_obj[1:2:]. The syntax is object[start:stop:step]
+# The default value of start is 0, stop is length_of_the_list, step is 1
+
+    def __getitem__(self, indx):
+        tmp_lnk_lst = linked_list()
+        cur_node = self.head
+        cur_indx = 0
+        if isinstance(indx, slice):
+
+# If user didn't pass any start value then it assign default value 0 to start
+            if indx.start == None:
+                start = 0
+            else:
+                start = indx.start
+
+# If user did't pass any stop value then it assign default value length of the
+# list to stop
+            if indx.stop == None:
+                stop = self.size()
+            else:
+                stop = indx.stop
+
+# If user didn't pass any step value then it assign default value 1 to the 
+            if indx.step == None:
+                step = 1
+            else:
+                step = indx.step
+
+            while cur_indx != start:
+                if cur_node.nxt_node != None:
+                    cur_node = cur_node.nxt_node
+                    cur_indx += 1
+                else:
+                    print('Index out of range !')
+                    return None
+            while cur_indx < stop and cur_indx < self.size():
+                tmp_lnk_lst.add(cur_node.value)
+                cur_indx += step
+                for i in range(step):
+                    if cur_node.nxt_node != None:
+                        cur_node = cur_node.nxt_node
+        else:
+            while cur_indx != indx:
+                if cur_node.nxt_node != None:
+                    cur_node = cur_node.nxt_node
+                    cur_indx += 1
+                else:
+                    print('Index out of range !')
+                    return None
+            tmp_lnk_lst.add(cur_node.value)
+        return tmp_lnk_lst
