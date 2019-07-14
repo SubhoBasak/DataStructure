@@ -35,3 +35,19 @@ class Graph:
                 if k == 1:
                     print('\t', self.vertices[self.rev_indx[j]].name)
             print('=============')
+
+    def __getitem__(self, name):
+        if isinstance(name, slice):
+            print('Slicing is not supported !')
+        elif name in self.vertices:
+            return self.vertices[name]
+        else:
+            print('No vertex is available with name ', name)
+
+    def __setitem__(self, name, value):
+        if isinstance(name, slice):
+            print('Slicing is not supported !')
+        elif name in self.vertices:
+            self.vertices[name].value = value
+        else:
+            print('No vertices available with name ', name)

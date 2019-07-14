@@ -31,3 +31,21 @@ class Graph:
             for j in self.vertices[i].neighbours:
                 print('\t', j.name)
             print('================')
+
+    def __getitem__(self, name):
+        if isinstance(name, slice):
+            print('Slicing is not supported !')
+        else:
+            try:
+                return self.vertices[name]
+            except KeyError:
+                print('No vertex found with name ', index)
+
+    def __setitem__(self, name, value):
+        if isinstance(name, slice):
+            print('Slicing is not supported !')
+        else:
+            try:
+                self.vertices[name].value = value
+            except KeyError:
+                print('No vertex found name ', name)
